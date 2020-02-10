@@ -14,3 +14,7 @@ echo "result1 = $result1"
 #COMPUTING SECOND ARITHMETIC EXPRESSION
 result2=$(($a*$b+$c))
 echo "result2 = $result2"
+
+#COMPUTING THIRD ARITHMETIC EXPRESSION
+result3=`echo "scale=2; (($c+$a/$b))" |bc`
+echo "result3 = $result3"
