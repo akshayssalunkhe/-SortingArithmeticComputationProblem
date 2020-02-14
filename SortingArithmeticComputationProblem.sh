@@ -1,24 +1,38 @@
 #!/bin/bash -x
-
 echo "Welcome To Sorting Arithmetic Computation Problem"
 
+#DECLARING DICTIONARY
+declare -A resultDictionary
+
+#VARIABLES
+result=0;
+position=1;
+firstInput=0;
+secondInput=0;
+thirdInput=0;
+firstResult=0;
+secondResult=0;
+thirdResult=0;
+
 #TAKING THREE INPUTS FROM USER
-read -p "Enter Value Of a: " a
-read -p "Enter Value Of b: " b
-read -p "Enter Value Of c: " c
+read -p "Enter Value Of firstInput: " firstInput
+read -p "Enter Value Of secondInput: " secondInput
+read -p "Enter Value Of thirdInput: " thirdInput
 
 #COMPUTING FIRST ARITMETIC EXPRESSION
-result1=`echo " $a+$b*$c" | bc`
-echo "result1 = $result1"
+firstResult=`echo " $firstInput+$secondInput*$thirdInput" | bc`
 
 #COMPUTING SECOND ARITHMETIC EXPRESSION
-result2=`echo "scale=2; $a*$b+$c" | bc`
-echo "result2 = $result2"
+secondResult=`echo "scale=2; $firstInput*$secondInput+$thirdInput" | bc`
 
 #COMPUTING THIRD ARITHMETIC EXPRESSION
-result3=`echo "scale=2; $c+$a/$b" | bc`
-echo "result3 = $result3"
+thirdResult=`echo "scale=2; $thirdInput+$firstInput/$secondInput" | bc`
 
 #COMPUTING FOURTH ARITHMETIC EXPRESSION
-result4=`echo " $a%$b+$c" | bc`
-echo "result4 = $result4"
+fourthResult=`echo " $firstInput%$secondInput+$thirdInput" | bc`
+
+#STORING RESULTS IN DICTIONARY
+resultDictionary[result$((position++))]=$firstResult
+resultDictionary[result$((position++))]=$secondResult
+resultDictionary[result$((position++))]=$thirdResult
+resultDictionary[result$((position++))]=$fourthResult
