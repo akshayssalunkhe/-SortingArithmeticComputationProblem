@@ -5,6 +5,7 @@ echo "Welcome To Sorting Arithmetic Computation Problem"
 declare -A resultDictionary
 
 #VARIABLES
+count=0;
 result=0;
 position=1;
 firstInput=0;
@@ -36,3 +37,9 @@ resultDictionary[result$((position++))]=$firstResult
 resultDictionary[result$((position++))]=$secondResult
 resultDictionary[result$((position++))]=$thirdResult
 resultDictionary[result$((position++))]=$fourthResult
+
+#READING VALUES FROM DICTIONARY TO ARRAY
+for (( index=1; index<=${#resultDictionary[@]}; index++ ))
+do
+	resultArray[index]=${resultDictionary[result$((index))]}
+done
