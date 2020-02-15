@@ -14,6 +14,7 @@ firstResult=0;
 secondResult=0;
 thirdResult=0;
 temp=0;
+index=0;
 
 #TAKING THREE INPUTS FROM USER
 read -p "Enter Value Of firstInput: " firstInput
@@ -58,7 +59,7 @@ function getDescendingSort() {
 			fi
 		done
 	done
-echo ${resultArray[@]}
+	echo ${resultArray[@]}
 }
 
 #CALLING DESCENDING SORT FUNCTION OF ARRAY
@@ -87,7 +88,6 @@ function getDescendingSortDictionary() {
 #CALLING DESCENDING SORT FUNCTION OF DICTIONARY
 getDescendingSortDictionary ${resultDictionary[@]}
 
-
 #SORTING RESULT ARRAY IN ASCENDING ORDER
 function getAscendingSort() {
 	for(( i=0; i<${#resultArray[@]}; i++ ))
@@ -102,12 +102,11 @@ function getAscendingSort() {
 			fi
 		done
 	done
-echo ${resultArray[@]}
+	echo ${resultArray[@]}
 }
 
 #CALLING ASCENDING SORT FUNCTION OF ARRAY FUNCTION
 getAscendingSort ${resultArray[@]}
-
 
 #SORT FUNCTION OF DICTIONARY
 function getAscendingSortDictionary() {
