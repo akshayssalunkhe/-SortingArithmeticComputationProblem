@@ -50,7 +50,7 @@ function getDescendingSort() {
 	do
 		for(( j=0; j<${#resultArray[@]}-1; j++ ))
 		do
-			if (( $(echo "${resultArray[j+1]} > ${resultArray[j]}" | bc -l) ))
+			if (( $(echo "${resultArray[j]} < ${resultArray[j+1]}" | bc -l) ))
 			then
 				temp=${resultArray[j]}
 				resultArray[j]=${resultArray[j+1]}
@@ -61,7 +61,7 @@ function getDescendingSort() {
 echo ${resultArray[@]}
 }
 
-#CALLING SORT FUNCTION OF ARRAY
+#CALLING DESCENDING SORT FUNCTION OF ARRAY
 getDescendingSort ${resultArray[@]}
 
 #SORT FUNCTION OF DICTIONARY
@@ -84,5 +84,50 @@ function getDescendingSortDictionary() {
 	echo ${!resultDictionary[@]}
 }
 
-#CALLING SORT FUNCTION OF DICTIONARY
+#CALLING DESCENDING SORT FUNCTION OF DICTIONARY
 getDescendingSortDictionary ${resultDictionary[@]}
+
+
+#SORTING RESULT ARRAY IN ASCENDING ORDER
+function getAscendingSort() {
+	for(( i=0; i<${#resultArray[@]}; i++ ))
+	do
+		for(( j=0; j<${#resultArray[@]}-1; j++ ))
+		do
+			if (( $(echo "${resultArray[j]} > ${resultArray[j+1]}" | bc -l) ))
+			then
+				temp=${resultArray[j]}
+				resultArray[j]=${resultArray[j+1]}
+				resultArray[j+1]=$temp
+			fi
+		done
+	done
+echo ${resultArray[@]}
+}
+
+#CALLING ASCENDING SORT FUNCTION OF ARRAY FUNCTION
+getAscendingSort ${resultArray[@]}
+
+
+#SORT FUNCTION OF DICTIONARY
+function getAscendingSortDictionary() {
+	for(( i=1; i<${#resultDictionary[@]}; i++ ))
+	do
+		for(( j=1; j<${#resultDictionary[@]}; j++ ))
+		do
+			if (( $(echo "${resultDictionary[result$((j))]} > ${resultDictionary[result$((j+1))]}" | bc -l) ))
+			then
+				temp=${resultDictionary[result$((j))]}
+				resultDictionary[result$((j))]=${resultDictionary[result$((j+1))]}
+				resultDictionary[result$((j+1))]=$temp
+			fi
+		done
+	done
+#DISPLAYING VALUES OF DICTIONARY
+	echo ${resultDictionary[@]}
+#DISPLAYING KEYS OF DICTIONARY
+	echo ${!resultDictionary[@]}
+}
+
+#CALLING ASCENDING SORT FUNCTION OF DICTIONARY
+getAscendingSortDictionary ${resultDictionary[@]}
