@@ -5,7 +5,6 @@ echo "Welcome To Sorting Arithmetic Computation Problem"
 declare -A resultDictionary
 
 #VARIABLES
-count=0;
 result=0;
 position=1;
 firstInput=0;
@@ -14,6 +13,7 @@ thirdInput=0;
 firstResult=0;
 secondResult=0;
 thirdResult=0;
+temp=0;
 
 #TAKING THREE INPUTS FROM USER
 read -p "Enter Value Of firstInput: " firstInput
@@ -39,7 +39,50 @@ resultDictionary[result$((position++))]=$thirdResult
 resultDictionary[result$((position++))]=$fourthResult
 
 #READING VALUES FROM DICTIONARY TO ARRAY
-for (( index=1; index<=${#resultDictionary[@]}; index++ ))
+for (( index=0; index<${#resultDictionary[@]}; index++ ))
 do
-	resultArray[index]=${resultDictionary[result$((index))]}
+	resultArray[index]=${resultDictionary[result$((index+1))]}
 done
+
+#SORTING RESULT ARRAY IN DESCENDING ORDER
+function getDescendingSort() {
+	for(( i=0; i<${#resultArray[@]}; i++ ))
+	do
+		for(( j=0; j<${#resultArray[@]}-1; j++ ))
+		do
+			if (( $(echo "${resultArray[j+1]} > ${resultArray[j]}" | bc -l) ))
+			then
+				temp=${resultArray[j]}
+				resultArray[j]=${resultArray[j+1]}
+				resultArray[j+1]=$temp
+			fi
+		done
+	done
+echo ${resultArray[@]}
+}
+
+#CALLING SORT FUNCTION OF ARRAY
+getDescendingSort ${resultArray[@]}
+
+#SORT FUNCTION OF DICTIONARY
+function getDescendingSortDictionary() {
+	for(( i=1; i<${#resultDictionary[@]}; i++ ))
+	do
+		for(( j=1; j<${#resultDictionary[@]}; j++ ))
+		do
+			if (( $(echo "${resultDictionary[result$((j))]} < ${resultDictionary[result$((j+1))]}" | bc -l) ))
+			then
+				temp=${resultDictionary[result$((j))]}
+				resultDictionary[result$((j))]=${resultDictionary[result$((j+1))]}
+				resultDictionary[result$((j+1))]=$temp
+			fi
+		done
+	done
+#DISPLAYING VALUES OF DICTIONARY
+	echo ${resultDictionary[@]}
+#DISPLAYING KEYS OF DICTIONARY
+	echo ${!resultDictionary[@]}
+}
+
+#CALLING SORT FUNCTION OF DICTIONARY
+getDescendingSortDictionary ${resultDictionary[@]}
